@@ -1,0 +1,21 @@
+<?php
+$_['lang_btn_status']           = 'Skift status';
+$_['lang_order_channel']        = 'Ordrer kanal';
+$_['lang_confirmed']            = 'Ordrerne er blevet markeret';
+$_['lang_no_orders']            = 'Ingen ordrer valgt til at opdatere';
+$_['lang_confirm_title']        = 'Gennemse ordrerstatus';
+$_['lang_confirm_change_text']  = 'Skift ordrestatus til';
+$_['lang_column_addtional']     = 'Yderligere information';
+$_['lang_column_comments']      = 'Kommentarer';
+$_['lang_column_notify']        = 'Underret';
+$_['lang_carrier']              = 'Selskab';
+$_['lang_tracking']             = 'Tracking';
+$_['lang_other']                = 'Andet';
+$_['lang_refund_reason']        = 'Grund til tilbagebetaling';
+$_['lang_refund_message']       = 'Tilbagebetalings besked';
+$_['lang_update']               = 'Opdater';
+$_['lang_cancel']               = 'Annuller';
+$_['lang_e_ajax_1']             = 'En play ordrer mangler en tilbagebetalings besked!';
+$_['lang_e_ajax_2']             = 'En play ordrer mangler tracking information!';
+$_['lang_e_ajax_3']             = 'En Amazon ordrer mangler en "anden kurer" post!';
+$_['lang_title_order_update']   = 'Opdater flere ordrer';

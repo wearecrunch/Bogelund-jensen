@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	
+	<head>
+		<title>Signe Bogelund-Jensen | Coming soon!</title>
+		
+		<meta charset=utf-8>
+		<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=no">
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400,900%7CGrand+Hotel" />
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="img/favicon.png">
+	</head>
+	
+	<body>
+	
+		<!-- BEGIN WELCOME -->
+		<div class="section-main" id="top">
+			<div class="title">
+				<img src="images/logo.png" alt="Glacial Logo" /><!-- Image logo -->
+				<!-- <a href="#top" class="scroll title-img"><h1 class="text-logo">Glacial</h1></a> --><!-- Text logo, uncomment to use -->
+				<h3 style="font-weight:200;">Our new site and webshop is under construction. <br/>Please see below for more information and be notified when our new site is live.</h3>
+			</div>
+			<div class="arrow-down">
+				<a class="scroll" href="#countdown-section"><i class="fa fa-chevron-down"></i></a>
+			</div>
+		</div>
+		<!-- END WELCOME -->
+		
+		<!-- BEGIN EMAIL-SUBSCRIBE -->
+		<div class="section-subscribe" id="countdown-section">
+			<div class="mini-container overlay-container">
+				<h2 class="section-title">Get notified when we go live</h2>
+				<div class="subscribe">
+					<form id="newsletter-signup" action="php/subscribe.php?action=signup" method="post">
+						<input type="email" class="enteremail" name="signup-email" placeholder="Enter your email address" spellcheck="false" />
+						<button type="submit" id="signup-button" class="signup-button"><i class="fa fa-check"></i></button>
+						<div id="signup-response" class="signup"></div>
+					</form>
+				</div><br>
+				Address: Strandvejen 59, 2. tv, 2100 Copenhagen Ø<br>
+				Telephone: +45 21 70 88 00<br>
+				E-mail: atelier@bogelund-jensen.com
+			</div>
+		</div>
+		<!-- END EMAIL-SUBSCRIBE -->
+		test
+		
+		<!-- BEGIN ABOUT -->
+		<div class="section-about">
+			<div class="mini-container">
+				<h2 class="section-title">About Bogelund-Jensen</h2>
+				<p>All of the design ideas and draping techniques are developed in the atelier located at Strandvejen 59 in Copenhagen. Our Bøgelund-Jensen philosophy is that beauty comes from within – we are all individual in our expression, shape and temperament. Bøgelund-Jensen focuses on bringing personality out with our clothing. You are always welcome to come into the atelier for a talk about your needs, wants and personal adjustments.</p>
+			</div>
+		</div>
+		<!-- END ABOUT -->
+		
+		<!-- BEGIN FOOTER -->
+		<div class="section-footer">
+			<div class="mini-container">
+				<div class="footer-container">
+					<div class="footer-block">
+						<!-- Social Icons -->
+						&copy; Signe B&oslash;gelund-Jensen
+						<a href="https://www.facebook.com/pages/Bøgelund-Jensen/86143017562" target="_blank" class="footer-social"><i class="fa fa-fw fa-facebook"></i></a>
+						<!-- End Social Icons -->
+					</div>
+					<div class="footer-spacer"></div>
+					<div class="footer-block-middle">
+						<a href="#top" class="scroll footer-img"><img src="images/logo.png" alt="Glacial Logo" /></a>
+					</div>
+					<div class="footer-spacer"></div>
+					<div class="footer-block">
+						Site under construction by <a href="http://wearecrunch.dk" target="_blank">Crunch</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END FOOTER -->
+		
+		<!-- Background Video container -->
+		<a id="bgndVideo" class="player"></a>
+		
+		<!-- Loading Page Overlay -->
+		<div class="page-loading">
+			<noscript><div class="noscript-error">Enable JavaScript to see this site working properly.</div></noscript>
+			<div class="loading"></div>
+		</div>
+
+		<!-- JAVASCRIPT -->
+		<script type="text/javascript" src="js/jquery.js"></script>
+			
+			<!-- All set up / customisation variables for slideshow and video background etc. in custom.js file -->
+			<script type="text/javascript" src="js/custom.js"></script>
+		
+		<script type="text/javascript" src="js/countdown.js"></script>
+		<script type="text/javascript" src="js/emailsubscribe.js"></script>
+		<script type="text/javascript" src="js/contact.js"></script>
+		<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mb.YTPlayer.js"></script>
+		<script type="text/javascript" src="js/smoothscroll.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){	
+				var titleHeight = ($('.title').height()) / 2;
+				$('.title').css("margin-top", "-" + titleHeight + "px");
+		
+				// Background Slideshow
+			    $.backstretch([
+			    	"images/background1.jpg",
+			    	"images/background2.jpg",
+			    	"images/background3.jpg",
+			    	"images/background4.jpg",
+			    	], {
+			        fade: 1000,
+			        duration: 4000
+			    });
+
+				// Countdown
+				$("#countdown").countdown({
+					date: "14 May 2014 00:00:00", // Enter date in format: DD (full month) YYYY HH:MM:SS
+				}, function() { // Callback Function
+				});
+				
+				// Page Loading Screen
+				$('.backstretch img').load(function(){
+					$('.page-loading').delay(500).fadeOut(1000);
+				});
+
+    
+			});
+		</script>
+	</body>
+</html>

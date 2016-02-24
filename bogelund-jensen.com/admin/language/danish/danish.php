@@ -1,0 +1,121 @@
+<?php
+// Locale
+$_['code']                    = 'da';
+$_['direction']               = 'ltr';
+$_['date_format_short']       = 'd.m.Y';
+$_['date_format_long']        = 'l dS F Y';
+$_['time_format']             = 'h:i:s A';
+$_['decimal_point']           = ',';
+$_['thousand_point']          = '.';
+
+// Text
+$_['text_yes']                = 'Ja';
+$_['text_no']                 = 'Nej';
+$_['text_enabled']            = 'Aktiveret';
+$_['text_disabled']           = 'Deaktiveret';
+$_['text_none']               = ' --- Ingen --- ';
+$_['text_select']             = ' --- Vælg venligst --- ';
+$_['text_select_all']         = 'Marker alle';
+$_['text_unselect_all']       = 'Afmarker alle';
+$_['text_all_zones']          = 'Alle zoner';
+$_['text_default']            = ' <b>(Standard)</b>';
+$_['text_close']              = 'Luk';
+$_['text_pagination']         = 'Viser {start} til {end} af {total} ({pages} sider)';
+$_['text_no_results']         = 'Ingen resultater!';
+$_['text_separator']          = ' &gt; ';
+$_['text_edit']               = 'Rediger';
+$_['text_view']               = 'Vis';
+$_['text_home']               = 'Hjem';
+
+// Button
+$_['button_insert']           = 'Indsæt';
+$_['button_delete']           = 'Slet';
+$_['button_save']             = 'Gem';
+$_['button_cancel']           = 'Annuller';
+$_['button_clear']            = 'Ryd log';
+$_['button_close']            = 'Luk';
+$_['button_filter']           = 'Filter';
+$_['button_send']             = 'Send';
+$_['button_edit']             = 'Rediger';
+$_['button_copy']             = 'Kopier';
+$_['button_back']             = 'Tilbage';
+$_['button_remove']           = 'Fjern';
+$_['button_backup']           = 'Backup';
+$_['button_restore']          = 'Gendan';
+$_['button_repair']           = 'Reparér';
+$_['button_upload']           = 'Upload';
+$_['button_submit']           = 'Indsend';
+$_['button_invoice']          = 'Print faktura';
+$_['button_add_address']      = 'Tilføj adresse';
+$_['button_add_attribute']    = 'Tilføj attribut';
+$_['button_add_banner']       = 'Tilføj banner';
+$_['button_add_custom_field_value'] = 'Tilføj brugerdefineret felt';
+$_['button_add_product']      = 'Tilføj produkt';
+$_['button_add_voucher']      = 'Tilføj gavekort';
+$_['button_add_filter']       = 'Tilføj filter';
+$_['button_add_option']       = 'Tilføj valgmulighed';
+$_['button_add_option_value'] = 'Tilføj valgmulighedsværdi';
+$_['button_add_discount']     = 'Tilføj rabat';
+$_['button_add_special']      = 'Tilføj tilbud';
+$_['button_add_image']        = 'Tilføj billede';
+$_['button_add_geo_zone']     = 'Tilføj geografisk zone';
+$_['button_add_history']      = 'Tilføj historie';
+$_['button_add_transaction']  = 'Tilføj transaktion';
+$_['button_add_total']        = 'Tilføj total';
+$_['button_add_reward']       = 'Tilføj point';
+$_['button_add_route']        = 'Tilføj route';
+$_['button_add_rule' ]        = 'Tilføj regel';
+$_['button_add_module']       = 'Tilføj modul';
+$_['button_add_link']         = 'Tilføj link';
+$_['button_update_total']     = 'Opdater total';
+$_['button_approve']          = 'Godkend';
+$_['button_reset']            = 'Nulstil';
+
+// Tab
+$_['tab_address']             = 'Adresse';
+$_['tab_admin']               = 'Admin';
+$_['tab_attribute']           = 'Attribut';
+$_['tab_coupon_history']      = 'Kuponhistorik';
+$_['tab_customer']            = 'Kundeoplysninger';
+$_['tab_data']                = 'Data';
+$_['tab_design']              = 'Design';
+$_['tab_discount']            = 'Mængderabat';
+$_['tab_general']             = 'Generelt';
+$_['tab_fraud']               = 'Svindel';
+$_['tab_ftp']                 = 'FTP';
+$_['tab_ip']                  = 'IP adresser';
+$_['tab_links']               = 'Links';
+$_['tab_image']               = 'Billede';
+$_['tab_option']              = 'Valgmuligheder';
+$_['tab_server']              = 'Server';
+$_['tab_store']               = 'Butik';
+$_['tab_special']             = 'Tilbud';
+$_['tab_local']               = 'Lokal';
+$_['tab_mail']                = 'Mail';
+$_['tab_marketplace_links']   = 'Markedsplads links';
+$_['tab_module']              = 'Modul';
+$_['tab_order']               = 'Ordredetaljer';
+$_['tab_order_history']       = 'Ordrehistorik';
+$_['tab_payment']             = 'Betalingsdetaljer';
+$_['tab_product']             = 'Produkter';
+$_['tab_history']			  = 'Historie';
+$_['tab_return']              = 'Returneringsdetaljer';
+$_['tab_return_history']      = 'Returneringshistorik';
+$_['tab_reward']              = 'Point';
+$_['tab_shipping']            = 'Forsendelsesdetaljer';
+$_['tab_total']               = 'Totaler';
+$_['tab_transaction']         = 'Transaktioner';
+$_['tab_voucher']             = 'Gavekort';
+$_['tab_voucher_history']     = 'Gavekortshistorik';
+$_['tab_price']               = 'Pris';
+
+// Error
+$_['error_upload_1']          = 'Advarsel: Den uploadede fil oversteg upload_max_filesize direktivet i php.ini!';
+$_['error_upload_2']          = 'Advarsel: Den uploadede fil oversteg MAX_FILE_SIZE direktivet der var specificeret i HTML formlen!';
+$_['error_upload_3']          = 'Advarsel: Den uploadede fil blev kun delvist uploadet!';
+$_['error_upload_4']          = 'Advarsel: Ingen fil blev uploadet!';
+$_['error_upload_6']          = 'Advarsel: Mangler en midlertidig mappe!';
+$_['error_upload_7']          = 'Advarsel: Tilskrivning til disk fejlede!';
+$_['error_upload_8']          = 'Advarsel: Filupload blev stoppet af udvidelse!';
+$_['error_upload_999']        = 'Advarsel: Fejlkode kunne ikke specificeres!';
+?>

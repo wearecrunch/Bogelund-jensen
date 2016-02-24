@@ -1,0 +1,347 @@
+<modification>
+
+	<id>Easy Sort order with Drag'n Drop</id>
+	<version>1.4</version>
+	<vqmver>2.5.1</vqmver>
+	<author>Adikon</author>
+
+	<file name="admin/view/template/common/header.tpl" error="skip">
+		<operation error="skip">
+			<search position="before"><![CDATA[</head>]]></search>
+			<add><![CDATA[<?php if ($this->registry->get('config')->get('dragndrop_position_status') && ($this->registry->get('config')->get('dragndrop_position_access') && in_array($this->registry->get('user')->getId(), (array)$this->registry->get('config')->get('dragndrop_position_access')))) { ?><script type="text/javascript" src="view/javascript/DragNDropPosition/dragNdrop_position.js"></script><?php } ?>]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/controller/extension/payment.php,admin/controller/extension/shipping.php,admin/controller/extension/total.php" error="skip">
+		<operation error="skip">
+			<search position="before"><![CDATA[if ($files) {]]></search>
+			<add><![CDATA[if ($this->config->get('dragndrop_position_status')) {
+				foreach ($files as $key => $value) {
+					$extension = basename($value, '.php');
+
+					if ($this->config->get($extension . '_sort_order') || $this->config->get($extension . '_sort_order') == '0') {
+						$sort_order[$extension] = $this->config->get($extension . '_sort_order');
+					} else {
+						$sort_order[$extension] = 1000000;
+					}
+				}
+			
+				array_multisort($sort_order, SORT_ASC, $files);
+			}]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/catalog/category_list.tpl,admin/view/template/catalog/product_list.tpl,admin/view/template/catalog/attribute_group_list.tpl,admin/view/template/catalog/attribute_list.tpl,admin/view/template/catalog/option_list.tpl,admin/view/template/catalog/manufacturer_list.tpl,admin/view/template/catalog/information_list.tpl" error="skip">
+		<operation error="skip">
+			<search position="before"><![CDATA[<td width="1" style="text-align: center;">]]></search>
+			<add><![CDATA[<td width="1"> </td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<td style="text-align: center;">]]></search>
+			<add><![CDATA[<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[<tbody>]]></search>
+			<add><![CDATA[<tbody class="dd_sortable_list">]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				<script type="text/javascript"><!--
+				$('.dd_sortable_list').dragNdrop_position({php_token: '<?php echo $this->session->data['token']; ?>', page: '<?php echo (isset($this->request->get['page'])) ? $this->request->get['page'] : 0; ?>', limit: '<?php echo (int)$this->config->get('config_admin_limit'); ?>'});
+				//--></script>
+			<?php } ?>]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/catalog/product_list.tpl" error="skip">
+		<operation error="skip">
+			<search position="after"><![CDATA[<tr class="filter">]]></search>
+			<add><![CDATA[<td></td>]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/extension/payment.tpl,admin/view/template/extension/shipping.tpl,admin/view/template/extension/total.tpl" error="skip">
+		<operation error="skip">
+			<search position="before"><![CDATA[<td class="left"><?php echo $column_name; ?></td>]]></search>
+			<add><![CDATA[<td width="1"> </td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<td class="left"><?php echo $extension['name']; ?></td>]]></search>
+			<add><![CDATA[<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[<tbody>]]></search>
+			<add><![CDATA[<tbody class="dd_sortable_list">]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				<script type="text/javascript"><!--
+				$('.dd_sortable_list').dragNdrop_position({php_token: '<?php echo $this->session->data['token']; ?>'});
+				//--></script>
+			<?php } ?>]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/sale/customer_group_list.tpl,admin/view/template/localisation/language_list.tpl" error="skip">
+		<operation error="skip">
+			<search position="before"><![CDATA[<td width="1" style="text-align: center;">]]></search>
+			<add><![CDATA[<td width="1"> </td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<td style="text-align: center;">]]></search>
+			<add><![CDATA[<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[<tbody>]]></search>
+			<add><![CDATA[<tbody class="dd_sortable_list">]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				<script type="text/javascript"><!--
+				$('.dd_sortable_list').dragNdrop_position({php_token: '<?php echo $this->session->data['token']; ?>', page: '<?php echo (isset($this->request->get['page'])) ? $this->request->get['page'] : 0; ?>', limit: '<?php echo (int)$this->config->get('config_admin_limit'); ?>'});
+				//--></script>
+			<?php } ?>]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/design/banner_form.tpl" error="skip">
+		<operation error="skip">
+			<search position="before"><![CDATA[<td class="left"><?php echo $entry_title; ?></td>]]></search>
+			<add><![CDATA[<td width="1"> </td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<td class="left"><?php foreach ($languages as $language) { ?>]]></search>
+			<add><![CDATA[<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[html += '<td class="left">';]]></search>
+			<add><![CDATA[html += '<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>';]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				<script type="text/javascript"><!--
+				$('#images').dragNdrop_position();
+				//--></script>
+			<?php } ?>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[function addImage() {]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				$('#images').dragNdrop_position();
+			<?php } ?>]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/catalog/product_form.tpl" error="skip">
+		<operation error="skip">
+			<search position="replace"><![CDATA[<td class="left"><?php echo $entry_attribute; ?></td>]]></search>
+			<add><![CDATA[<td width="1"> </td><td class="left"><?php echo $entry_attribute; ?></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[<td class="left"><input type="text" name="product_attribute]]></search>
+			<add><![CDATA[<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td><td class="left"><input type="text" name="product_attribute]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[<td class="left"><?php echo $entry_option_value; ?></td>]]></search>
+			<add><![CDATA[<td width="1"> </td><td class="left"><?php echo $entry_option_value; ?></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<td class="left"><select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][option_value_id]">]]></search>
+			<add><![CDATA[<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[html += '    <td class="left"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][option_value_id]">';]]></search>
+			<add><![CDATA[html += '<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>';]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				<script type="text/javascript"><!--
+				$('#tab-attribute #attribute').dragNdrop_position();
+				$('#tab-option table.list').dragNdrop_position();
+				$('#tab-image #images').dragNdrop_position();
+				//--></script>
+			<?php } ?>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[function addOptionValue(option_row) {]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				$('#tab-option table.list').dragNdrop_position();
+			<?php } ?>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<td class="left"><?php echo $entry_image; ?></td>]]></search>
+			<add><![CDATA[<td width="1"> </td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[<td class="left"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />]]></search>
+			<add><![CDATA[<td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[html += '    <td class="left"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" />]]></search>
+			<add><![CDATA[html += '    <td style="text-align: center;"><img src="view/javascript/DragNDropPosition/image/<?php echo ($this->config->get('dragndrop_position_status')) ? 'ddp_drag_on.png' : 'ddp_drag_off.png'; ?>" alt="Drag" title="Drag" class="ddp_drag" /></td><td class="left"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" />]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[function addImage() {]]></search>
+			<add><![CDATA[<?php if ($this->config->get('dragndrop_position_status') && ($this->config->get('dragndrop_position_access') && in_array($this->user->getId(), (array)$this->config->get('dragndrop_position_access')))) { ?>
+				$('#tab-image #images').dragNdrop_position();
+			<?php } ?>]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[function addAttribute() {]]></search>
+			<add><![CDATA[<?php if ($this->registry->get('config')->get('dragndrop_position_status') && ($this->registry->get('config')->get('dragndrop_position_access') && in_array($this->registry->get('user')->getId(), (array)$this->registry->get('config')->get('dragndrop_position_access')))) { ?>
+				$('#tab-attribute #attribute tbody').dragNdrop_position();
+			<?php } ?>]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/model/catalog/product.php" error="skip">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$sql .= " ORDER BY " . $data['sort'];]]></search>
+			<add><![CDATA[
+			if (($this->config->get('dragndrop_position_status') && $this->config->get('dragndrop_position_sort')) && !isset($this->request->get['sort'])) {
+				$sql .= " ORDER BY p.sort_order";
+			} else {
+				$sql .= " ORDER BY " . $data['sort'];
+			}
+			]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="before"><![CDATA[foreach ($data['product_attribute'] as $product_attribute) {]]></search>
+			<add><![CDATA[$i=0;]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[foreach ($data['product_attribute'] as $product_attribute) {]]></search>
+			<add><![CDATA[$i++;]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_attribute SET]]></search>
+			<add><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_attribute SET " . (($this->config->get('dragndrop_position_status')) ? "sort_order = '" . $i . "'" : "") . ", ]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[public function getProductAttributes($product_id) {]]></search>
+			<add><![CDATA[if ($this->config->get('dragndrop_position_status')) {
+				$ddp_sql = ' ORDER BY sort_order ASC';
+			} else {
+				$ddp_sql = '';
+			}]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[$product_attribute_query = $this->db->query("SELECT attribute_id FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' GROUP BY attribute_id");]]></search>
+			<add><![CDATA[$product_attribute_query = $this->db->query("SELECT attribute_id FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' GROUP BY attribute_id" . $ddp_sql);]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[foreach ($data['product_option'] as $product_option) {]]></search>
+			<add><![CDATA[$i=0;]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[foreach ($product_option['product_option_value'] as $product_option_value) {]]></search>
+			<add><![CDATA[$i++;]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET]]></search>
+			<add><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET " . (($this->config->get('dragndrop_position_status')) ? "sort_order = '" . $i . "'" : "") . ", ]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[public function getProductOptions($product_id) {]]></search>
+			<add><![CDATA[if ($this->config->get('dragndrop_position_status')) {
+				$ddp_sql = ' ORDER BY sort_order ASC';
+			} else {
+				$ddp_sql = '';
+			}]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[$product_option_value_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_value WHERE product_option_id = '" . (int)$product_option['product_option_id'] . "'");]]></search>
+			<add><![CDATA[$product_option_value_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_option_value WHERE product_option_id = '" . (int)$product_option['product_option_id'] . "'" . $ddp_sql);]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/model/catalog/category.php" error="skip">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$sql .= " GROUP BY cp.category_id ORDER BY name";]]></search>
+			<add><![CDATA[
+			if (($this->config->get('dragndrop_position_status') && $this->config->get('dragndrop_position_sort')) && !isset($this->request->get['sort'])) {
+				$sql .= " GROUP BY cp.category_id ORDER BY c.sort_order";
+			} else {
+				$sql .= " GROUP BY cp.category_id ORDER BY name";
+			}
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/controller/catalog/category.php" error="skip">
+		<operation error="skip">
+			<search position="replace"><![CDATA['sort_order'  => $result['sort_order'],]]></search>
+			<add><![CDATA['sort_order'  => (!$this->config->get('dragndrop_position_status')) ? $result['sort_order'] : $this->db->query("SELECT sort_order FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$result['category_id'] . "'")->row['sort_order'],]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/model/catalog/product.php" error="skip">
+		<operation error="skip">
+			<search position="after"><![CDATA[public function getProductAttributes($product_id) {]]></search>
+			<add><![CDATA[if ($this->config->get('dragndrop_position_status')) {
+				$ddp_sql = 'pa.sort_order ASC';
+			} else {
+				$ddp_sql = 'a.sort_order, ad.name';
+			}]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[ORDER BY a.sort_order, ad.name]]></search>
+			<add><![CDATA[ORDER BY " . $ddp_sql .  "]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="after"><![CDATA[public function getProductOptions($product_id) {]]></search>
+			<add><![CDATA[if ($this->config->get('dragndrop_position_status')) {
+				$ddp_sql = 'pov.sort_order ASC';
+			} else {
+				$ddp_sql = 'ov.sort_order';
+			}]]></add>
+		</operation>
+
+		<operation error="skip">
+			<search position="replace"><![CDATA[ORDER BY ov.sort_order]]></search>
+			<add><![CDATA[ORDER BY " . $ddp_sql .  "]]></add>
+		</operation>
+	</file>
+
+</modification>

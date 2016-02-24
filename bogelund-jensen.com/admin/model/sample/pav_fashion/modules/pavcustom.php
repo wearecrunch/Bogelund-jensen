@@ -1,0 +1,4 @@
+a:1:{i:1;a:8:{s:12:"module_title";a:3:{i:1;s:11:"Banner news";i:3;s:0:"";i:4;s:0:"";}s:11:"description";a:3:{i:1;s:141:"&lt;div class=&quot;box box-banner&quot;&gt;&lt;img alt=&quot;banner&quot; src=&quot;image/data/banner/img-news.jpg&quot; /&gt;&lt;/div&gt;
+";i:3;s:141:"&lt;div class=&quot;box box-banner&quot;&gt;&lt;img alt=&quot;banner&quot; src=&quot;image/data/banner/img-news.jpg&quot; /&gt;&lt;/div&gt;
+";i:4;s:141:"&lt;div class=&quot;box box-banner&quot;&gt;&lt;img alt=&quot;banner&quot; src=&quot;image/data/banner/img-news.jpg&quot; /&gt;&lt;/div&gt;
+";}s:10:"show_title";s:1:"0";s:9:"layout_id";s:1:"1";s:8:"position";s:10:"footer_top";s:6:"status";s:1:"1";s:12:"module_class";s:0:"";s:10:"sort_order";i:1;}}
